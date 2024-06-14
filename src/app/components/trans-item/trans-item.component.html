@@ -1,0 +1,25 @@
+<div
+  class="card rounded mb-4"
+  *ngIf="transaction"
+  [ngClass]="{
+    'bg-success': transaction.type === 'invoice',
+    'bg-secondary': transaction.type === 'withdrawal'
+  }"
+>
+  <div class="card-body">
+    <h5>{{ transaction.business }}</h5>
+    <p>{{ transaction.name }}</p>
+    <p>{{ transaction.account }}</p>
+    <p>{{ transaction.date | date : "fullDate" }}</p>
+    <p>{{ transaction.type }}</p>
+    <p
+      [ngClass]="{
+        'bg-warning': transaction.amount > 700
+      }"
+    >
+      {{ transaction.amount | currency : "USD" : "symbol" : "1.2-2" }}
+    </p>
+  </div>
+</div>
+
+<!-- uso la direttiva [ngClass] e applico le classi bootstrap per cambiare il colore di sfondo-->
